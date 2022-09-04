@@ -1,21 +1,15 @@
 import type { NextPage } from "next";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import Chats from "./chats";
 import Loader from "./components/loader";
 
-const Home: NextPage = () => {
-  const { data: session, status } = useSession();
-  switch (status) {
-    case "loading": {
-      return <Loader />;
-    }
-    case "unauthenticated": {
-      window.location.href = "/api/auth/signin";
-    }
-    default: {
-      const { user } = session!;
-      return <div>hello {user?.name}</div>;
-    }
-  }
+const Root: NextPage = () => {
+  const { status } = useSession();
+  const router = useRouter();
+  if (status === "loading") return <Loader />;
+  if (status === "unauthenticated") router.push("/api/auth/signin");
+  return <Chats />;
 };
 
-export default Home;
+export default Root;

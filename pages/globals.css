@@ -1,7 +1,23 @@
+:root {
+  /* Color palette */
+  --primary-color: #ff00bf;
+  /* Spacing */
+  --default-margin: 5px;
+  --default-padding: 5px;
+  /* Misc */
+  --default-border-radius: 1px;
+}
+
 * {
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  -ms-overflow-style: none;
+}
+
+/* Hide scrollbar IE and Edge */
+*::-webkit-scrollbar {
+  display: none;
 }
 
 html,
@@ -11,6 +27,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+*:focus {
+  outline-color: var(--primary-color);
 }
 
 @media (prefers-color-scheme: dark) {
