@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
-import github from "../../services/github";
+import github from "@services/github";
 import { Endpoints } from "@octokit/types";
 import styles from "./chats.module.css";
 

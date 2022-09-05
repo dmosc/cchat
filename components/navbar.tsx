@@ -6,7 +6,7 @@ import styles from "./navbar.module.css";
 
 const Navbar: React.FC = () => {
   const [user, setUser] = useState<User>();
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   useEffect(() => {
     if (session) {
       setUser(session.user);
