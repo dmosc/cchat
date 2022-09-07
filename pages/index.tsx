@@ -1,9 +1,9 @@
-import { NextPage } from "next";
-import { useEffect, useState } from "react";
-import github from "@services/github";
 import { Endpoints } from "@octokit/types";
-import styles from "./index.module.css";
+import github from "@services/github";
+import { NextPage } from "next";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import styles from "./index.module.css";
 
 const Home: NextPage = () => {
   const [repos, setRepos] = useState<
@@ -16,13 +16,7 @@ const Home: NextPage = () => {
     <div className={styles.grid}>
       <h1 className={styles.gridTitle}>Recent changes</h1>
       {repos.map((repo) => (
-        <Link
-          key={repo.id}
-          href={{
-            pathname: "/explorer",
-            query: { contentsUrl: repo.contents_url }
-          }}
-        >
+        <Link key={repo.id} href={`/explorer/${repo.owner.login}/${repo.name}`}>
           <div className={styles.card}>
             <div className={styles.cardTitle}>{repo.name}</div>
             <div>{repo.description ?? "..."}</div>

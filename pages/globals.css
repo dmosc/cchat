@@ -1,11 +1,14 @@
+@import "@material-design-icons/font/outlined.css";
+
 :root {
   /* Color palette */
   --primary-color: #ff00bf;
+  --default-border-color: #8b949e;
   /* Spacing */
   --default-margin: 5px;
   --default-padding: 5px;
   /* Misc */
-  --default-border-radius: 1px;
+  --default-border-radius: 2px;
 }
 
 * {
@@ -39,6 +42,11 @@ body {
   }
   body {
     color: white;
-    background: black;
+    background: #0d1117;
   }
+}
+
+.material-icons-outlined:hover {
+  cursor: pointer;
+  color: var(--default-border-color);
 }
