@@ -1,0 +1,67 @@
+import { Endpoints } from "@octokit/types";
+import github from "@services/github";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import styles from "./resources.module.css";
+
+interface Props {
+  setCode: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+const Resources: React.FC<Props> = ({ setCode }) => {
+  const router = useRouter();
+  const { owner, path } = router.query;
+  const [resources, setResources] = useState<
+    Endpoints["GET /repos/{owner}/{repo}/contents/{path}"]["response"]["data"][]
+  >([]);
+  useEffect(() => {
+    const [repo, ...rest] = path as string[];
+    github
+      .query(`/repos/${owner}/${repo}/contents/${rest.join("/")}`)
+      .then(({ data }) => {
+        setResources(data);
+      });
+  }, [owner, path]);
+  return (
+    <div className={styles.container}>
+      <div className={styles.containerHeader}>
+        <h2 className={styles.containerTitle}>File explorer</h2>
+        <span className="material-icons-outlined" onClick={() => router.back()}>
+          arrow_back
+        </span>
+      </div>
+      {resources.map((resource) => {
+        /*
+          TypeScript compiler does static Union resolution using surrounding boolean logic.
+          Github's response type for this endpoint can be a resource object or an array of these
+          resource objects. We need the TypeScript compiler to discard the array interface option
+          with an !Array.isArray(resource).
+        */
+        if (!Array.isArray(resource)) {
+          return (
+            <div
+              key={resource.sha}
+              className={styles.resource}
+              onClick={() => {
+                if (resource.type === "file") {
+                  const [repo] = path as string[];
+                  github
+                    .query(`/repos/${owner}/${repo}/git/blobs/${resource.sha}`)
+                    .then(({ data }) => {
+                      setCode(atob(data.content).split("\n"));
+                    });
+                } else {
+                  router.push(`${router.asPath}/${resource.name}`);
+                }
+              }}
+            >
+              {resource.name}
+            </div>
+          );
+        }
+      })}
+    </div>
+  );
+};
+
+export default Resources;
