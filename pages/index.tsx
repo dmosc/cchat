@@ -1,5 +1,5 @@
 import { Endpoints } from "@octokit/types";
-import github from "@services/github";
+import github from "services/github";
 import { NextPage } from "next";
 import Link from "next/link";
 import { useEffect, useState } from "react";

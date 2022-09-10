@@ -1,5 +1,6 @@
 import { Endpoints } from "@octokit/types";
-import github from "@services/github";
+import github from "services/github";
+import ErrorManager from "utils/error-manager";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styles from "./resources.module.css";
@@ -20,7 +21,8 @@ const Resources: React.FC<Props> = ({ setCode }) => {
       .query(`/repos/${owner}/${repo}/contents/${rest.join("/")}`)
       .then(({ data }) => {
         setResources(data);
-      });
+      })
+      .catch(ErrorManager.log);
   }, [owner, path]);
   return (
     <div className={styles.container}>
@@ -49,7 +51,8 @@ const Resources: React.FC<Props> = ({ setCode }) => {
                     .query(`/repos/${owner}/${repo}/git/blobs/${resource.sha}`)
                     .then(({ data }) => {
                       setCode(atob(data.content).split("\n"));
-                    });
+                    })
+                    .catch(ErrorManager.log);
                 } else {
                   router.push(`${router.asPath}/${resource.name}`);
                 }

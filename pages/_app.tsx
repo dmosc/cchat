@@ -1,5 +1,5 @@
-import Loader from "@components/loader";
-import Navbar from "@components/navbar";
+import Loader from "components/loader";
+import Navbar from "components/navbar";
 import { SessionProvider, useSession } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
