@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import { useState } from "react";
-import Code from "./Code";
+import Code from "./code";
 import styles from "./path.module.css";
 import Resources from "./resources";
 
