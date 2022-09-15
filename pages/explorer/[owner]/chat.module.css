@@ -1,8 +1,8 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: 30%;
-  height: 80vh;
+  width: 35%;
+  height: 90vh;
   border-radius: var(--default-border-radius);
   border: 1px solid var(--default-border-color);
   overflow: auto;
@@ -11,12 +11,39 @@
 }
 
 .messagesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 100%;
+  overflow: auto;
   padding: calc(var(--default-padding) * 2);
 }
 
 .inputContainer {
   width: 100%;
   padding: var(--default-padding);
+}
+
+.messageContainer {
+  display: flex;
+  width: 100%;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  border: none;
+  background-color: rgba(var(--default-background-color), 0.5);
+  margin: calc(var(--default-margin) * 2);
+  padding: calc(var(--default-padding) * 2);
+  border-radius: calc(var(--default-border-radius) * 2);
+  white-space: pre-wrap;
+}
+
+.messageFrom {
+  font-size: small;
+  opacity: 0.5;
+  margin-bottom: calc(var(--default-margin) * 2);
 }

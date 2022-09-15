@@ -3,7 +3,7 @@ import { NextApiResponseServerIO } from "types/socket-io";
 
 type BodyPayload = {
   event: string;
-  message: string;
+  message: Message;
 };
 
 export default function handler(

@@ -27,15 +27,17 @@ const dispatchContent = (id: string, callback: (data: string) => void) => {
   const content = document.getElementById(id) as HTMLTextAreaElement;
   callback(content.value);
   content.value = "";
+  content.style.setProperty("height", "0px");
 };
 
 interface Props {
   /** Callback from parent to dispatch current textarea content */
-  callback: React.Dispatch<React.SetStateAction<string>>;
+  callback: (content: string) => void;
 }
 
 const TextEditor: React.FC<Props> = ({ callback }) => {
   const [id] = useState(String(Math.random()));
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
   return (
     <div className={styles.container}>
       <textarea
@@ -47,9 +49,11 @@ const TextEditor: React.FC<Props> = ({ callback }) => {
         }}
         onInput={(event) => {
           verticalResize(event);
+          setIsButtonEnabled(!!event.currentTarget.value);
         }}
       />
       <button
+        disabled={!isButtonEnabled}
         className={styles.sendButton}
         onClick={() => {
           dispatchContent(id, callback);

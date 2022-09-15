@@ -2,7 +2,7 @@ import { io, Socket } from "socket.io-client";
 
 class SocketClient {
   private socket: Socket;
-  private static instance: SocketClient;
+  private static instance?: SocketClient;
 
   private constructor() {
     this.socket = io({ path: "/api/socket" });
@@ -20,7 +20,7 @@ class SocketClient {
   }
 
   emit(payload: { event: string; [key: string]: any }) {
-    fetch("/api/socket-forward", {
+    fetch("/api/message", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

@@ -4,7 +4,6 @@ import { SessionProvider, useSession } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import React from "react";
-import { ChildrenProps } from "types/next-auth";
 import "./globals.css";
 
 const AuthWrapper: React.FC<ChildrenProps> = ({ children }) => {

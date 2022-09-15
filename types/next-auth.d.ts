@@ -6,7 +6,3 @@ declare module "next-auth" {
     accessToken: string;
   }
 }
-
-interface ChildrenProps {
-  children: JSX.Element;
-}

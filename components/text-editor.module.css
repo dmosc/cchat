@@ -18,7 +18,7 @@
 }
 
 .sendButton {
-  width: 45%;
+  width: 20%;
   margin-top: var(--default-margin);
   padding: var(--default-padding);
   background-color: var(--primary-color);

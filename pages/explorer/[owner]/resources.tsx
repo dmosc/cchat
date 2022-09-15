@@ -6,12 +6,13 @@ import ErrorManager from "utils/error-manager";
 import styles from "./resources.module.css";
 
 interface Props {
+  owner: string;
+  path: string[];
   setCode: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const Resources: React.FC<Props> = ({ setCode }) => {
+const Resources: React.FC<Props> = ({ owner, path, setCode }) => {
   const router = useRouter();
-  const { owner, path } = router.query;
   const [resources, setResources] = useState<
     Endpoints["GET /repos/{owner}/{repo}/contents/{path}"]["response"]["data"][]
   >([]);
