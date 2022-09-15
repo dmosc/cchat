@@ -1,3 +1,3 @@
 ## cchat
 
-Side chat for developers to have chat-like conversation over Github repositories.
+Side chat for developers to have conversation over Github repositories.
