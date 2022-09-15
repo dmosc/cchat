@@ -1,7 +1,7 @@
 .container {
   display: flex;
   width: 100vw;
-  justify-content: left;
+  justify-content: center;
 }
 
 .resourcesContainer {

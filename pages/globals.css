@@ -3,6 +3,7 @@
 :root {
   /* Color palette */
   --primary-color: #ff00bf;
+  --default-background-color: 49, 49, 49;
   --default-border-color: #8b949e;
   /* Spacing */
   --default-margin: 5px;

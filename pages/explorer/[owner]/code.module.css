@@ -1,5 +1,5 @@
 .container {
-  width: 50%;
+  width: 40%;
   border-radius: var(--default-border-radius);
   border: 1px solid var(--default-border-color);
   overflow: auto;
