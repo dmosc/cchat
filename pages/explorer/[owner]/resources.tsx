@@ -1,8 +1,8 @@
 import { Endpoints } from "@octokit/types";
-import github from "services/github";
-import ErrorManager from "utils/error-manager";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import github from "services/github";
+import ErrorManager from "utils/error-manager";
 import styles from "./resources.module.css";
 
 interface Props {
