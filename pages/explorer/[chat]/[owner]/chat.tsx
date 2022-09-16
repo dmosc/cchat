@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import socketClient from "services/socket-client";
+import ErrorManager from "utils/error-manager";
 import styles from "./chat.module.css";
 
 const Chat: React.FC = () => {
@@ -13,8 +14,12 @@ const Chat: React.FC = () => {
   useEffect(() => {
     fetch(`/api/messages?chat=${chat}`)
       .then((res) => res.json())
-      .then((res) => setMessages(res.messages));
-  }, [chat]);
+      .then((res) => setMessages(res.messages))
+      .catch((error) => {
+        ErrorManager.log(error);
+        router.replace("/");
+      });
+  }, [chat, router]);
   useEffect(() => {
     socketClient.on(chat, (data) => {
       setMessages([...messages, data]);
