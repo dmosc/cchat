@@ -6,13 +6,12 @@ import ErrorManager from "utils/error-manager";
 import styles from "./resources.module.css";
 
 interface Props {
-  owner: string;
-  path: string[];
   setCode: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const Resources: React.FC<Props> = ({ owner, path, setCode }) => {
+const Resources: React.FC<Props> = ({ setCode }) => {
   const router = useRouter();
+  const { owner, path } = router.query;
   const [resources, setResources] = useState<
     Endpoints["GET /repos/{owner}/{repo}/contents/{path}"]["response"]["data"][]
   >([]);
@@ -29,7 +28,15 @@ const Resources: React.FC<Props> = ({ owner, path, setCode }) => {
     <div className={styles.container}>
       <div className={styles.containerHeader}>
         <h2 className={styles.containerTitle}>File explorer</h2>
-        <span className="material-icons-outlined" onClick={() => router.back()}>
+        <span
+          className="material-icons-outlined"
+          onClick={() => {
+            const lastSlash = router.asPath.lastIndexOf("/");
+            if (lastSlash) {
+              router.push(router.asPath.slice(0, lastSlash));
+            }
+          }}
+        >
           arrow_back
         </span>
       </div>

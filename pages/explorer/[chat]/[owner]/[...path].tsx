@@ -7,18 +7,12 @@ import styles from "./path.module.css";
 import Resources from "./resources";
 
 const Explorer: NextPage = () => {
-  const router = useRouter();
   const [code, setCode] = useState<string[]>([]);
-  const { owner, path } = router.query;
   return (
     <div className={styles.container}>
-      <Resources
-        owner={owner as string}
-        path={path as string[]}
-        setCode={setCode}
-      />
+      <Resources setCode={setCode} />
       <Code code={code} />
-      <Chat owner={owner as string} path={path as string[]} />
+      <Chat />
     </div>
   );
 };

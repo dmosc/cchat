@@ -1,20 +1,17 @@
 import TextEditor from "components/text-editor";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import socketClient from "services/socket-client";
 import styles from "./chat.module.css";
 
-interface Props {
-  owner: string;
-  path: string[];
-}
-
-const Chat: React.FC<Props> = ({ owner, path }) => {
-  const chatId = `${owner}${path!.join("")}`;
+const Chat: React.FC = () => {
+  const router = useRouter();
+  const chat = router.query["chat"] as string;
   const { data: session } = useSession();
   const [messages, setMessages] = useState<Message[]>([]);
   useEffect(() => {
-    socketClient.on(chatId, (data) => {
+    socketClient.on(chat, (data) => {
       setMessages([...messages, data]);
     });
   });
@@ -43,7 +40,7 @@ const Chat: React.FC<Props> = ({ owner, path }) => {
           callback={(content: string) => {
             if (!!content) {
               socketClient.emit({
-                event: chatId,
+                event: chat,
                 message: { content, from: session?.user.name }
               });
             }

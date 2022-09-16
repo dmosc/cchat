@@ -11,11 +11,6 @@ const nextConfig = {
         source: "/explorer",
         destination: "/",
         permanent: true
-      },
-      {
-        source: "/explorer/:owner",
-        destination: "/",
-        permanent: true
       }
     ];
   }
