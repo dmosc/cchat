@@ -1,36 +1,46 @@
 import { Endpoints } from "@octokit/types";
 import { NextPage } from "next";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import github from "services/github";
 import ErrorManager from "utils/error-manager";
 import styles from "./index.module.css";
 
 const Home: NextPage = () => {
+  const router = useRouter();
   const [repos, setRepos] = useState<
     Endpoints["GET /user/repos"]["response"]["data"]
   >([]);
-  const [chat, setChat] = useState<string>();
   useEffect(() => {
     github.query("/user/repos?sort=updated").then(({ data }) => setRepos(data));
-    fetch("/api/chat")
-      .then((res) => res.json())
-      .then((res) => setChat(res.chat))
-      .catch(ErrorManager.log);
   }, []);
   return (
     <div className={styles.grid}>
       <h1 className={styles.gridTitle}>Recent changes</h1>
       {repos.map((repo) => (
-        <Link
+        <div
           key={repo.id}
-          href={`/explorer/${chat}/${repo.owner.login}/${repo.name}`}
+          className={styles.card}
+          onClick={() => {
+            fetch("/api/chat", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ owner: repo.owner.login, repo: repo.name })
+            })
+              .then((res) => res.json())
+              .then((res) => {
+                router.push(
+                  `/explorer/${res.chat}/${repo.owner.login}/${repo.name}`
+                );
+              })
+              .catch(ErrorManager.log);
+          }}
         >
-          <div className={styles.card}>
-            <div className={styles.cardTitle}>{repo.name}</div>
-            <div>{repo.description ?? "..."}</div>
-          </div>
-        </Link>
+          <div className={styles.cardTitle}>{repo.name}</div>
+          <div>{repo.description ?? "..."}</div>
+        </div>
       ))}
     </div>
   );

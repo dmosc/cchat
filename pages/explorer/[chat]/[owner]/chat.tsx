@@ -9,7 +9,12 @@ const Chat: React.FC = () => {
   const router = useRouter();
   const chat = router.query["chat"] as string;
   const { data: session } = useSession();
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<MessageType[]>([]);
+  useEffect(() => {
+    fetch(`/api/messages?chat=${chat}`)
+      .then((res) => res.json())
+      .then((res) => setMessages(res.messages));
+  }, [chat]);
   useEffect(() => {
     socketClient.on(chat, (data) => {
       setMessages([...messages, data]);
@@ -41,7 +46,7 @@ const Chat: React.FC = () => {
             if (!!content) {
               socketClient.emit({
                 event: chat,
-                message: { content, from: session?.user.name }
+                message: { content, from: session?.user.name, chat }
               });
             }
           }}
