@@ -1,5 +1,4 @@
 import { NextPage } from "next";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import Chat from "./chat";
 import Code from "./code";

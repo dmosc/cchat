@@ -1,4 +1,4 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const Message = new Schema<MessageType>({
   chat: { type: Schema.Types.ObjectId, required: true, ref: "Chat" },
