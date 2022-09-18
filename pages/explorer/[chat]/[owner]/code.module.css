@@ -21,6 +21,11 @@
   color: var(--default-border-color);
   font-size: small;
   padding-right: 5px;
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .lineContent {
