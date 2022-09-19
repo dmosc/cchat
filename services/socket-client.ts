@@ -28,6 +28,10 @@ class SocketClient {
       body: JSON.stringify(payload)
     });
   }
+
+  off() {
+    this.socket.off();
+  }
 }
 
 export default SocketClient.getInstance();

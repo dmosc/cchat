@@ -25,9 +25,10 @@ const Chat: React.FC = () => {
 
   useEffect(() => {
     socketClient.on(CHAT_EVENT, (data: MessageType) => {
-      setMessages([...messages, data]);
+      setMessages((messages) => [...messages, data]);
     });
-  });
+    return () => socketClient.off();
+  }, [CHAT_EVENT]);
 
   return (
     <div className={styles.container}>
