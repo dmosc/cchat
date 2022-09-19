@@ -54,9 +54,14 @@ const Chat: React.FC = () => {
         <TextEditor
           callback={(content: string) => {
             if (!!content) {
-              socketClient.emit({
-                event: CHAT_EVENT,
-                message: { content, from: session?.user.name, chat }
+              fetch("/api/message", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  message: { content, from: session?.user.name, chat }
+                })
               });
             }
           }}

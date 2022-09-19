@@ -8,3 +8,7 @@ type ChatType = {
   owner: string;
   repo: string;
 };
+
+type CodeSyncEventType = {
+  path: string;
+};

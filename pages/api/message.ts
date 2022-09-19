@@ -11,8 +11,9 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponseServerIO
 ) {
-  const { event, message: _message } = req.body as BodyPayload;
-  res.socket.server.io.emit(event, _message);
+  const { message: _message } = req.body as BodyPayload;
+  const CHAT_EVENT = `__chat__${_message.chat}`;
+  res.socket.server.io.emit(CHAT_EVENT, _message);
   const message = new Message(_message);
   message.save();
   res.end();

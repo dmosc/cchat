@@ -2,6 +2,7 @@ import { Endpoints } from "@octokit/types";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import github from "services/github";
+import socketClient from "services/socket-client";
 import ErrorManager from "utils/error-manager";
 import styles from "./resources.module.css";
 
@@ -14,8 +15,16 @@ const Resources: React.FC<Props> = ({ setCode }) => {
     Endpoints["GET /repos/{owner}/{repo}/contents/{path}"]["response"]["data"]
   >([]);
   const router = useRouter();
-  const { owner, path } = router.query;
+  const { chat, owner, path } = router.query;
   const [repo, ...currentPath] = path as string[];
+  const CODE_SYNC_EVENT = `__code_sync__${chat}`;
+
+  useEffect(() => {
+    socketClient.on(CODE_SYNC_EVENT, (data: CodeSyncEventType) => {
+      router.replace(data.path);
+    });
+    return () => socketClient.off();
+  }, [CODE_SYNC_EVENT, router]);
 
   useEffect(() => {
     github

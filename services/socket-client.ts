@@ -19,13 +19,13 @@ class SocketClient {
     this.socket.on(event, callback);
   }
 
-  emit(payload: { event: string; [key: string]: any }) {
-    fetch("/api/message", {
+  emit(data: { event: string; payload: { [key: string]: any } }) {
+    fetch("/api/forwarder", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(data)
     });
   }
 
