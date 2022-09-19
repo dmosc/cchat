@@ -10,12 +10,13 @@ interface Props {
 }
 
 const Resources: React.FC<Props> = ({ setCode }) => {
-  const router = useRouter();
-  const { owner, path } = router.query;
-  const [repo, ...currentPath] = path as string[];
   const [resources, setResources] = useState<
     Endpoints["GET /repos/{owner}/{repo}/contents/{path}"]["response"]["data"]
   >([]);
+  const router = useRouter();
+  const { owner, path } = router.query;
+  const [repo, ...currentPath] = path as string[];
+
   useEffect(() => {
     github
       .query(`/repos/${owner}/${repo}/contents/${currentPath.join("/")}`)
@@ -34,6 +35,7 @@ const Resources: React.FC<Props> = ({ setCode }) => {
       .catch(ErrorManager.log);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path]);
+
   return (
     <div className={styles.container}>
       <div className={styles.containerHeader}>

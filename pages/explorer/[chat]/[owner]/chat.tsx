@@ -7,10 +7,12 @@ import ErrorManager from "utils/error-manager";
 import styles from "./chat.module.css";
 
 const Chat: React.FC = () => {
+  const [messages, setMessages] = useState<MessageType[]>([]);
+  const { data: session } = useSession();
   const router = useRouter();
   const chat = router.query["chat"] as string;
-  const { data: session } = useSession();
-  const [messages, setMessages] = useState<MessageType[]>([]);
+  const CHAT_EVENT = `__chat__${chat}`;
+
   useEffect(() => {
     fetch(`/api/messages?chat=${chat}`)
       .then((res) => res.json())
@@ -20,11 +22,13 @@ const Chat: React.FC = () => {
         router.replace("/");
       });
   }, [chat, router]);
+
   useEffect(() => {
-    socketClient.on(chat, (data) => {
+    socketClient.on(CHAT_EVENT, (data: MessageType) => {
       setMessages([...messages, data]);
     });
   });
+
   return (
     <div className={styles.container}>
       <div className={styles.messagesContainer}>
@@ -50,7 +54,7 @@ const Chat: React.FC = () => {
           callback={(content: string) => {
             if (!!content) {
               socketClient.emit({
-                event: chat,
+                event: CHAT_EVENT,
                 message: { content, from: session?.user.name, chat }
               });
             }
