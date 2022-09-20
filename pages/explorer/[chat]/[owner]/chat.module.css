@@ -40,17 +40,25 @@
 .message {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 75%;
   border: none;
   background-color: rgba(var(--default-background-color), 0.5);
   margin: calc(var(--default-margin) * 2);
   padding: calc(var(--default-padding) * 2);
   border-radius: calc(var(--default-border-radius) * 2);
   white-space: pre-wrap;
+  overflow: auto;
+  border-right: solid calc(var(--default-padding) * 2) rgba(0, 0, 0, 0);
 }
 
 .messageFrom {
   font-size: small;
   opacity: 0.5;
   margin-bottom: calc(var(--default-margin) * 2);
+}
+
+.messageCodeLink {
+  margin-top: calc(var(--default-margin) * 2);
+  font-size: small;
+  font-weight: bold;
 }

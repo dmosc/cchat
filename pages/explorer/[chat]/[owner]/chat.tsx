@@ -1,5 +1,6 @@
 import TextEditor from "components/text-editor";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import socketClient from "services/socket-client";
@@ -10,8 +11,8 @@ const Chat: React.FC = () => {
   const [messages, setMessages] = useState<MessageType[]>([]);
   const { data: session } = useSession();
   const router = useRouter();
+  const { chat, lines } = router.query;
   const messagesContainerRef = useRef<HTMLDivElement>(null);
-  const chat = router.query["chat"] as string;
   const CHAT_EVENT = `__chat__${chat}`;
 
   useEffect(() => {
@@ -59,6 +60,11 @@ const Chat: React.FC = () => {
             <div className={styles.message}>
               <div className={styles.messageFrom}>{message.from}</div>
               {message.content}
+              {message.path && (
+                <div className={styles.messageCodeLink}>
+                  <Link href={message.path}>Code reference</Link>
+                </div>
+              )}
             </div>
           </div>
         ))}
@@ -67,14 +73,22 @@ const Chat: React.FC = () => {
         <TextEditor
           callback={(content: string) => {
             if (!!content) {
+              const [min, max] =
+                (lines as string)?.split("-").map(Number) ?? [];
+              const message: MessageType = {
+                content,
+                from: session?.user.name,
+                chat
+              };
+              if (min >= 0 && max >= 0) {
+                message.path = router.asPath;
+              }
               fetch("/api/message", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"
                 },
-                body: JSON.stringify({
-                  message: { content, from: session?.user.name, chat }
-                })
+                body: JSON.stringify({ message })
               });
             }
           }}

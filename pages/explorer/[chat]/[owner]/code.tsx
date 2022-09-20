@@ -76,7 +76,9 @@ const Code: React.FC<Props> = ({ code }) => {
                 key={i}
                 className={`${styles.lineContainer} ${maybeSelectStyle}`}
                 onClick={(e) => {
-                  if (e.shiftKey && selectedRange.min >= 0) {
+                  if (i === selectedRange.min) {
+                    setSelectedRange({ min: -1, max: -1 });
+                  } else if (e.shiftKey && selectedRange.min >= 0) {
                     setSelectedRange({
                       min: Math.min(i, selectedRange.min),
                       max: Math.max(i, selectedRange.min)
