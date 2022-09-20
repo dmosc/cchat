@@ -21,13 +21,14 @@ const Chat: React.FC = () => {
         ErrorManager.log(error);
         router.replace("/");
       });
-  }, [chat, router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     socketClient.on(CHAT_EVENT, (data: MessageType) => {
       setMessages((messages) => [...messages, data]);
     });
-    return () => socketClient.off();
+    return () => socketClient.off(CHAT_EVENT);
   }, [CHAT_EVENT]);
 
   return (

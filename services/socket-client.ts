@@ -29,8 +29,8 @@ class SocketClient {
     });
   }
 
-  off() {
-    this.socket.off();
+  off(event: string) {
+    this.socket.off(event);
   }
 }
 

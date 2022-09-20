@@ -23,7 +23,7 @@ const Resources: React.FC<Props> = ({ setCode }) => {
     socketClient.on(CODE_SYNC_EVENT, (data: CodeSyncEventType) => {
       router.replace(data.path);
     });
-    return () => socketClient.off();
+    return () => socketClient.off(CODE_SYNC_EVENT);
   }, [CODE_SYNC_EVENT, router]);
 
   useEffect(() => {
