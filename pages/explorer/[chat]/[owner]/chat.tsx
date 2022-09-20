@@ -7,6 +7,14 @@ import socketClient from "services/socket-client";
 import ErrorManager from "utils/error-manager";
 import styles from "./chat.module.css";
 
+const computeMessageColor = (path?: string) => {
+  if (!path) return undefined;
+  let hash = path
+    .split("")
+    .reduce((hash, char) => char.charCodeAt(0) + ((hash << 5) - hash), 0);
+  return `hsl(${hash % 360}, 90%, 15%)`;
+};
+
 const Chat: React.FC = () => {
   const [messages, setMessages] = useState<MessageType[]>([]);
   const { data: session } = useSession();
@@ -57,7 +65,10 @@ const Chat: React.FC = () => {
                 message.from === session?.user.name ? "right" : "left"
             }}
           >
-            <div className={styles.message}>
+            <div
+              className={styles.message}
+              style={{ backgroundColor: computeMessageColor(message.path) }}
+            >
               <div className={styles.messageFrom}>{message.from}</div>
               {message.content}
               {message.path && (
