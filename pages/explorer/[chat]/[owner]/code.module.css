@@ -2,6 +2,11 @@
   display: flex;
   flex-direction: column;
   width: 50%;
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .actionsContainer {
@@ -25,6 +30,12 @@
 .lineContainer:hover {
   background-color: rgba(187, 128, 9, 0.15);
   box-shadow: inset 2px 0 0 rgba(187, 128, 9, 0.4);
+  cursor: pointer;
+}
+
+.lineContainerSelected {
+  background-color: rgba(187, 128, 9, 0.15);
+  box-shadow: inset 2px 0 0 rgba(187, 128, 9, 0.4);
 }
 
 .lineNumber {
@@ -33,11 +44,6 @@
   color: var(--default-border-color);
   font-size: small;
   padding-right: 5px;
-  user-select: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
 }
 
 .lineContent {
