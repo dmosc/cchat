@@ -23,7 +23,7 @@
   scroll-behavior: smooth;
 }
 
-.messagesContainer > .messageContainer {
+.messagesContainer > :last-child {
   scroll-snap-align: start;
 }
 

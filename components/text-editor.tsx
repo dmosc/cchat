@@ -46,7 +46,7 @@ const TextEditor: React.FC<Props> = ({ callback }) => {
         className={styles.content}
         onKeyDown={(event) => {
           processSpecialChars(event);
-          if (event.shiftKey && event.key === "Enter" && isButtonEnabled) {
+          if (event.ctrlKey && event.key === "Enter" && isButtonEnabled) {
             dispatchContent(id, callback);
           }
         }}
