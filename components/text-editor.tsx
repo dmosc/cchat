@@ -46,10 +46,15 @@ const TextEditor: React.FC<Props> = ({ callback }) => {
         className={styles.content}
         onKeyDown={(event) => {
           processSpecialChars(event);
+          if (event.shiftKey && event.key === "Enter" && isButtonEnabled) {
+            dispatchContent(id, callback);
+          }
         }}
         onInput={(event) => {
           verticalResize(event);
-          setIsButtonEnabled(!!event.currentTarget.value);
+          const value = event.currentTarget.value;
+          const isEmpty = value.match(/[^\n\t]/);
+          setIsButtonEnabled(!!value && !!isEmpty);
         }}
       />
       <button
