@@ -1,7 +1,7 @@
 import TextEditor from "components/text-editor";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import socketClient from "services/socket-client";
 import ErrorManager from "utils/error-manager";
 import styles from "./chat.module.css";
@@ -10,6 +10,7 @@ const Chat: React.FC = () => {
   const [messages, setMessages] = useState<MessageType[]>([]);
   const { data: session } = useSession();
   const router = useRouter();
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const chat = router.query["chat"] as string;
   const CHAT_EVENT = `__chat__${chat}`;
 
@@ -31,9 +32,20 @@ const Chat: React.FC = () => {
     return () => socketClient.off(CHAT_EVENT);
   }, [CHAT_EVENT]);
 
+  useEffect(() => {
+    /*
+      Wait a bit until DOM finishes painting so we can try to scroll the chat container
+      on first load. Not sure if this is the 'ideal' way to approach this, but it works.
+    */
+    setTimeout(() => {
+      const container = messagesContainerRef.current!;
+      container.scrollTop = container.scrollHeight;
+    }, 500);
+  }, []);
+
   return (
     <div className={styles.container}>
-      <div className={styles.messagesContainer}>
+      <div ref={messagesContainerRef} className={styles.messagesContainer}>
         {!messages.length && "Send a message to start a conversation..."}
         {messages.map((message, i) => (
           <div

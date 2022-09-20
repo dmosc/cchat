@@ -18,6 +18,13 @@
   height: 100%;
   overflow: auto;
   padding: calc(var(--default-padding) * 2);
+  overscroll-behavior-y: contain;
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+}
+
+.messageContainer:last-child {
+  scroll-snap-align: start;
 }
 
 .inputContainer {

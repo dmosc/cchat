@@ -7,6 +7,7 @@
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  height: 90vh;
 }
 
 .actionsContainer {
@@ -17,9 +18,10 @@
 }
 
 .codeContainer {
+  display: block;
+  overflow: auto;
   border-radius: var(--default-border-radius);
   border: 1px solid var(--default-border-color);
-  overflow: auto;
   padding: var(--default-padding);
 }
 
