@@ -48,7 +48,6 @@
   border-radius: calc(var(--default-border-radius) * 2);
   white-space: pre-wrap;
   overflow: auto;
-  border-right: solid calc(var(--default-padding) * 2) rgba(0, 0, 0, 0);
 }
 
 .messageFrom {
@@ -61,4 +60,16 @@
   margin-top: calc(var(--default-margin) * 2);
   font-size: small;
   font-weight: bold;
+}
+
+.codeSection {
+  font-size: smaller;
+  background-color: rgba(var(--default-background-color), 0.5);
+  border-left: 5px solid var(--default-border-color);
+  padding: 0 calc(var(--default-padding) * 2);
+  line-height: 1.5;
+}
+
+.codeSectionLimit {
+  height: 0.5em;
 }

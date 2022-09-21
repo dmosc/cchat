@@ -70,7 +70,28 @@ const Chat: React.FC = () => {
               style={{ backgroundColor: computeMessageColor(message.path) }}
             >
               <div className={styles.messageFrom}>{message.from}</div>
-              {message.content}
+              {(() => {
+                let isCodeSection = false;
+                return message.content.split(/\n/).map((line) => {
+                  const key = String(Math.random());
+                  if (line.includes("```")) {
+                    isCodeSection = !isCodeSection;
+                    return (
+                      <span key={key} className={styles.codeSectionLimit}>
+                        &nbsp;
+                      </span>
+                    );
+                  }
+                  return (
+                    <span
+                      key={key}
+                      className={isCodeSection ? styles.codeSection : ""}
+                    >
+                      {line}&nbsp;
+                    </span>
+                  );
+                });
+              })()}
               {message.path && (
                 <div className={styles.messageCodeLink}>
                   <Link href={message.path}>Code reference</Link>
