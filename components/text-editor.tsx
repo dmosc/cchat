@@ -30,10 +30,10 @@ const dispatchContent = (id: string, callback: (data: string) => void) => {
   content.style.setProperty("height", "0px");
 };
 
-interface Props {
+type Props = {
   /** Callback from parent to dispatch current textarea content */
   callback: (content: string) => void;
-}
+};
 
 const TextEditor: React.FC<Props> = ({ callback }) => {
   const [id] = useState(String(Math.random()));

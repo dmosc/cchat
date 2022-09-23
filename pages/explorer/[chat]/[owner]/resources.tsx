@@ -6,9 +6,9 @@ import socketClient from "services/socket-client";
 import ErrorManager from "utils/error-manager";
 import styles from "./resources.module.css";
 
-interface Props {
+type Props = {
   setCode: React.Dispatch<React.SetStateAction<string[]>>;
-}
+};
 
 const Resources: React.FC<Props> = ({ setCode }) => {
   const [resources, setResources] = useState<

@@ -1,3 +1,3 @@
-interface ChildrenProps {
+type ChildrenProps = {
   children: JSX.Element;
-}
+};
