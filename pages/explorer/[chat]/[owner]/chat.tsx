@@ -112,7 +112,11 @@ const Chat: React.FC = () => {
                 from: session?.user.name,
                 chat
               };
-              if (min >= 0 && max >= 0) {
+              /*
+                If there's a single line selected, `max` is undefined;
+                only checking for `min` should suffice.
+              */
+              if (min >= 0) {
                 message.path = router.asPath;
               }
               fetch("/api/message", {
