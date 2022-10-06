@@ -31,7 +31,7 @@ const Home: NextPage = () => {
       {chats.map((chat) => {
         const date = new Date(
           parseInt(chat._id.toString().slice(0, 8), 16) * 1000
-        ).toLocaleDateString();
+        ).toLocaleString();
         const chatId = chat._id.toString();
         return (
           <div
