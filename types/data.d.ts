@@ -1,3 +1,5 @@
+import type { ObjectId } from "mongoose";
+
 type MessageType = {
   from: string;
   content: string;
@@ -6,6 +8,7 @@ type MessageType = {
 };
 
 type ChatType = {
+  _id: ObjectId;
   owner: string;
   repo: string;
 };
