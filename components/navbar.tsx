@@ -1,11 +1,11 @@
-import { User } from "next-auth";
+import type { UserType } from "next-auth";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./navbar.module.css";
 
 const Navbar: React.FC = () => {
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<UserType>();
   const { data: session } = useSession();
   useEffect(() => {
     if (session) {

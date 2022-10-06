@@ -1,4 +1,5 @@
 import { model, Schema } from "mongoose";
+import type { MessageType } from "types/data";
 
 const Message = new Schema<MessageType>({
   chat: { type: Schema.Types.ObjectId, required: true, ref: "Chat" },

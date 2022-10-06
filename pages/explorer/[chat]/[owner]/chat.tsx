@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import socketClient from "services/socket-client";
+import type { MessageType } from "types/data";
 import ErrorManager from "utils/error-manager";
 import styles from "./chat.module.css";
 
@@ -109,7 +110,7 @@ const Chat: React.FC = () => {
                 (lines as string)?.split("-").map(Number) ?? [];
               const message: MessageType = {
                 content,
-                from: session?.user.name,
+                from: session?.user.name!,
                 chat
               };
               /*

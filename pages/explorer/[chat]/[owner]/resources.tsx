@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import github from "services/github";
 import socketClient from "services/socket-client";
+import type { CodeSyncEventType } from "types/data";
 import ErrorManager from "utils/error-manager";
 import styles from "./resources.module.css";
 

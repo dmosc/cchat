@@ -1,4 +1,5 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model } from "mongoose";
+import type { ChatType } from "types/data";
 
 const Chat = new Schema<ChatType>({
   owner: { type: String, required: true },

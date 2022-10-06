@@ -1,5 +1,6 @@
 import { Message } from "models";
 import type { NextApiRequest } from "next";
+import type { MessageType } from "types/data";
 import { NextApiResponseServerIO } from "types/socket-io";
 
 type BodyPayload = {
