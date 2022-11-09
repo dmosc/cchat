@@ -33,10 +33,10 @@
 }
 
 .searchInput {
-  width: 50%;
+  width: 95%;
   height: 2.8em;
   font-weight: bold;
-  padding: 10px 5px;
+  padding: 10px 20px;
   border: none;
   border-radius: var(--default-border-radius);
 }
