@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./navbar.module.css";
+import { signOut } from "next-auth/react";
 
 const Navbar: React.FC = () => {
   const [user, setUser] = useState<UserType>();
@@ -33,6 +34,7 @@ const Navbar: React.FC = () => {
           alt="Profile image"
           className={styles.avatar}
         />
+        <div className={styles.logout}><button onClick={()=>signOut()}>Logout</button></div>
       </div>
     </div>
   );
