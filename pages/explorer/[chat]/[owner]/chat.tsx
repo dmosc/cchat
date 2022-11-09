@@ -63,14 +63,14 @@ const Chat: React.FC = () => {
             className={styles.messageContainer}
             style={{
               justifyContent:
-                message.from === session?.user.name ? "right" : "left"
+                message.from === session?.user.profileLogin ? "right" : "left"
             }}
           >
             <div
               className={styles.message}
               style={{ backgroundColor: computeMessageColor(message.path) }}
             >
-              <div className={styles.messageFrom}>{message.from}</div>
+              <Link className={styles.messageFrom} href={"https://github.com/" + message.from}>{message.from}</Link>
               {(() => {
                 let isCodeSection = false;
                 return message.content.split(/\n/).map((line) => {
@@ -110,7 +110,8 @@ const Chat: React.FC = () => {
                 (lines as string)?.split("-").map(Number) ?? [];
               const message: MessageType = {
                 content,
-                from: session?.user.name!,
+                from: session?.user.profileLogin!,
+                // from: "test",
                 chat
               };
               /*
@@ -126,13 +127,17 @@ const Chat: React.FC = () => {
                   "Content-Type": "application/json"
                 },
                 body: JSON.stringify({ message })
+                
               });
+              console.log(message);
             }
+
           }}
         />
       </div>
     </div>
   );
+  
 };
 
 export default Chat;
