@@ -11,20 +11,15 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  margin: 0 0 10px 0;
+  align-items: center;
 }
 
-.containerTitle {
-  margin: 0;
+.containerHeaderActions > * {
+  margin-right: var(--default-margin);
 }
 
 .resource {
   width: 100%;
-  margin: calc(var(--default-margin) / 2) 0px;
-  padding: var(--default-padding);
-  border: 1px solid var(--default-border-color);
-  border-radius: var(--default-border-radius);
 }
 
 .resource:hover {

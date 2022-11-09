@@ -43,6 +43,7 @@
   width: 75%;
   border: none;
   background-color: rgba(var(--default-background-color), 0.5);
+  color: white;
   margin: calc(var(--default-margin) * 2);
   padding: calc(var(--default-padding) * 2);
   border-radius: calc(var(--default-border-radius) * 2);

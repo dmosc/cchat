@@ -1,3 +1,4 @@
+import { Button } from "antd";
 import { FormEvent, KeyboardEvent, useState } from "react";
 import styles from "./text-editor.module.css";
 
@@ -57,7 +58,8 @@ const TextEditor: React.FC<Props> = ({ callback }) => {
           setIsButtonEnabled(!!value && !!isEmpty);
         }}
       />
-      <button
+      <Button
+        type="primary"
         disabled={!isButtonEnabled}
         className={styles.sendButton}
         onClick={() => {
@@ -65,7 +67,7 @@ const TextEditor: React.FC<Props> = ({ callback }) => {
         }}
       >
         Send
-      </button>
+      </Button>
     </div>
   );
 };

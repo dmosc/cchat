@@ -1,10 +1,11 @@
 @import "@material-design-icons/font/outlined.css";
+@import "antd/dist/antd.css";
 
 :root {
   /* Color palette */
   --primary-color: #ff00bf;
   --default-background-color: 49, 49, 49;
-  --default-border-color: #8b949e;
+  --default-border-color: #bfbfbf;
   /* Spacing */
   --default-margin: 5px;
   --default-padding: 5px;
@@ -24,27 +25,8 @@
   display: none;
 }
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 *:focus {
   outline-color: var(--primary-color);
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: #0d1117;
-  }
 }
 
 .material-icons-outlined:hover {

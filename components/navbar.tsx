@@ -7,19 +7,22 @@ import styles from "./navbar.module.css";
 const Navbar: React.FC = () => {
   const [user, setUser] = useState<UserType>();
   const { data: session } = useSession();
+
   useEffect(() => {
     if (session) {
       setUser(session.user);
     }
   }, [session]);
+
   return (
     <div className={styles.container}>
-      <div className={styles.searchContainer}>
-        <input
+      {/* TODO: Maybe add a search bar? */}
+      {/* <div className={styles.searchContainer}>
+        <Input.Search
           className={styles.searchInput}
           placeholder="Search for any/file/path"
         />
-      </div>
+      </div> */}
       <div className={styles.avatarContainer}>
         <div className={styles.nameContainer}>
           <div style={{ fontSize: 12 }}>Hello, </div>

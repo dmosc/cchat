@@ -1,3 +1,5 @@
+import { CloudSyncOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import socketClient from "services/socket-client";
@@ -46,17 +48,15 @@ const Code: React.FC<Props> = ({ code }) => {
   return (
     <div className={styles.container}>
       <div className={styles.actionsContainer}>
-        <button
-          className="material-icons-outlined"
+        <Button
+          icon={<CloudSyncOutlined />}
           onClick={() => {
             socketClient.emit({
               event: CODE_SYNC_EVENT,
               payload: { path: router.asPath }
             });
           }}
-        >
-          cloud_sync
-        </button>
+        />
       </div>
       <table className={styles.codeContainer}>
         <tbody

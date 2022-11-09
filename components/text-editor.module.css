@@ -8,10 +8,9 @@
   width: 100%;
   max-height: 50vh;
   min-height: 10vh;
-  color: white;
-  background-color: rgba(var(--default-background-color), 0.5);
   font-weight: 400;
   padding: calc(var(--default-padding) * 2);
+  border-color: var(--default-border-color);
   tab-size: 4;
   resize: none;
   line-height: 1.5;
@@ -20,11 +19,6 @@
 .sendButton {
   width: 20%;
   margin-top: var(--default-margin);
-  padding: var(--default-padding);
-  background-color: var(--primary-color);
-  border: none;
-  border-radius: var(--default-border-radius);
-  font-weight: bold;
 }
 
 .sendButton:hover {
