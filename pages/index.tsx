@@ -44,7 +44,9 @@ const Home: NextPage = () => {
             <div
               className={styles.cardTitle}
             >{`${chat.owner}/${chat.repo}`}</div>
-            <div>{date}</div>
+            <div 
+              className={styles.cardDescription}
+            >{date}</div>
           </div>
         );
       })}
@@ -71,7 +73,7 @@ const Home: NextPage = () => {
           }}
         >
           <div className={styles.cardTitle}>{repo.name}</div>
-          <div>{repo.description ?? "..."}</div>
+          <div className={styles.cardDescription}>{repo.description ?? "..."}</div>
         </div>
       ))}
     </div>

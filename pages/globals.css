@@ -2,14 +2,14 @@
 
 :root {
   /* Color palette */
-  --primary-color: #ff00bf;
-  --default-background-color: 49, 49, 49;
+  --primary-color: #7f5af0;
+  --default-background-color: #16161a;
   --default-border-color: #8b949e;
   /* Spacing */
   --default-margin: 5px;
   --default-padding: 5px;
   /* Misc */
-  --default-border-radius: 2px;
+  --default-border-radius: 10px;
 }
 
 * {
@@ -43,7 +43,7 @@ body {
   }
   body {
     color: white;
-    background: #0d1117;
+    background: #16161a;
   }
 }
 
