@@ -1,12 +1,13 @@
 import { FolderOpenOutlined, PlusOutlined } from "@ant-design/icons";
 import { Endpoints } from "@octokit/types";
-import { Button, Card, Col, Divider, Row, Typography } from "antd";
+import { Card, Col, Divider, Row, Typography } from "antd";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import github from "services/github";
 import type { ChatType } from "types/data";
 import ErrorManager from "utils/error-manager";
+import styles from "./index.module.css";
 
 const { Title } = Typography;
 
@@ -29,7 +30,7 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
       <Divider orientation="left">
         <Title level={4} style={{ margin: 0 }}>
           Recent chats
@@ -106,34 +107,6 @@ const Home: NextPage = () => {
               </Card>
             </Col>
           );
-          // return (
-          //   <div
-          //     key={repo.id}
-          //     className={styles.card}
-          //     onClick={() => {
-          //       fetch("/api/chat", {
-          //         method: "POST",
-          //         headers: {
-          //           "Content-Type": "application/json"
-          //         },
-          //         body: JSON.stringify({
-          //           owner: repo.owner.login,
-          //           repo: repo.name
-          //         })
-          //       })
-          //         .then((res) => res.json())
-          //         .then((res) => {
-          //           router.push(
-          //             `/explorer/${res.chat}/${repo.owner.login}/${repo.name}`
-          //           );
-          //         })
-          //         .catch(ErrorManager.log);
-          //     }}
-          //   >
-          //     <div className={styles.cardTitle}>{repo.name}</div>
-          //     <div>{repo.description ?? "..."}</div>
-          //   </div>
-          // );
         })}
       </Row>
     </div>
