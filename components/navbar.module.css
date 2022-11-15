@@ -24,19 +24,3 @@
   align-items: flex-start;
   margin-right: 15px;
 }
-
-.searchContainer {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 50%;
-}
-
-.searchInput {
-  width: 50%;
-  height: 2.8em;
-  font-weight: bold;
-  padding: 10px 5px;
-  border: none;
-  border-radius: var(--default-border-radius);
-}

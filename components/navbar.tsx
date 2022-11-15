@@ -1,8 +1,11 @@
+import { Typography } from "antd";
 import type { UserType } from "next-auth";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./navbar.module.css";
+
+const { Link } = Typography;
 
 const Navbar: React.FC = () => {
   const [user, setUser] = useState<UserType>();
@@ -16,13 +19,6 @@ const Navbar: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      {/* TODO: Maybe add a search bar? */}
-      {/* <div className={styles.searchContainer}>
-        <Input.Search
-          className={styles.searchInput}
-          placeholder="Search for any/file/path"
-        />
-      </div> */}
       <div className={styles.avatarContainer}>
         <div className={styles.nameContainer}>
           <div style={{ fontSize: 12 }}>Hello, </div>
@@ -37,6 +33,9 @@ const Navbar: React.FC = () => {
           className={styles.avatar}
         />
       </div>
+      <Link href="#" onClick={() => signOut()}>
+        Logout
+      </Link>
     </div>
   );
 };
