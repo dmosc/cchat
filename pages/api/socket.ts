@@ -14,8 +14,7 @@ export default function handler(
   res: NextApiResponseServerIO
 ) {
   if (!res.socket.server.io) {
-    const io = new Server(res.socket.server, { path: "/api/socket" });
-    res.socket.server.io = io;
+    res.socket.server.io = new Server(res.socket.server, { path: "/api/socket" });
   }
   res.end();
 }
