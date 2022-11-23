@@ -1,7 +1,7 @@
 import { CloudSyncOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import socketClient from "services/socket-client";
 import styles from "./code.module.css";
 

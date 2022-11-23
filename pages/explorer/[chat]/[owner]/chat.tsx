@@ -2,7 +2,7 @@ import TextEditor from "components/text-editor";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import socketClient from "services/socket-client";
 import type { MessageType } from "types/data";
 import ErrorManager from "utils/error-manager";

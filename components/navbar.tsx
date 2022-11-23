@@ -2,7 +2,7 @@ import { Typography } from "antd";
 import type { UserType } from "next-auth";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./navbar.module.css";
 
 const { Link } = Typography;

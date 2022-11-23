@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./loader.module.css";
+import React from "react";
 
 const Loader: React.FC = () => {
   return (

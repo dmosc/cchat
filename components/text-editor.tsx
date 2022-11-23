@@ -1,5 +1,5 @@
 import { Button } from "antd";
-import { FormEvent, KeyboardEvent, useState } from "react";
+import React, { FormEvent, KeyboardEvent, useState } from "react";
 import styles from "./text-editor.module.css";
 
 const processSpecialChars = (event: KeyboardEvent<HTMLTextAreaElement>) => {
