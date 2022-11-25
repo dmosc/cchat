@@ -19,7 +19,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "socket.io": "^4.5.2",
-    "socket.io-client": "^4.5.2"
+    "socket.io-client": "^4.5.2",
+    "typewriter-effect": "^2.19.0"
   },
   "devDependencies": {
     "@octokit/types": "^7.2.0",

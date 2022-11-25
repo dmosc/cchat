@@ -8,9 +8,8 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET!
     })
   ],
-  theme: {
-    // TODO: Maybe support system color scheme.
-    colorScheme: "dark"
+  pages: {
+    signIn: "/auth/signin"
   },
   callbacks: {
     async jwt({ token, account, profile }) {

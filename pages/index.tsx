@@ -2,6 +2,7 @@ import { FolderOpenOutlined, PlusOutlined } from "@ant-design/icons";
 import { Endpoints } from "@octokit/types";
 import { Card, Col, Divider, Row, Typography } from "antd";
 import { NextPage } from "next";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import github from "services/github";
@@ -13,21 +14,31 @@ const { Title } = Typography;
 
 const Home: NextPage = () => {
   const router = useRouter();
+  const session = useSession();
   const [chats, setChats] = useState<ChatType[]>([]);
   const [repos, setRepos] = useState<
     Endpoints["GET /user/repos"]["response"]["data"]
   >([]);
 
   useEffect(() => {
-    github.query("/user/repos?sort=updated").then(({ data }) => setRepos(data));
-  }, []);
+    if (session.data) {
+      github.query("/user/repos?sort=updated").then(({ data }) => setRepos(data)).catch(ErrorManager.log);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session.data]);
 
   useEffect(() => {
-    fetch("/api/chats")
-      .then((res) => res.json())
-      .then((res) => setChats(res.chats))
-      .catch(ErrorManager.log);
-  }, []);
+    if (session.data) {
+      fetch("/api/chats")
+        .then((res) => res.json())
+        .then((res) => setChats(res.chats))
+        .catch(ErrorManager.log);
+    }
+  }, [session.data]);
+
+  if (session.status === "unauthenticated") {
+    router.replace("/auth/signin");
+  }
 
   return (
     <div className={styles.container}>
