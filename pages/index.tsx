@@ -1,6 +1,7 @@
-import { FolderOpenOutlined, PlusOutlined } from "@ant-design/icons";
+import { FolderOpenOutlined } from "@ant-design/icons";
 import { Endpoints } from "@octokit/types";
-import { Card, Col, Divider, Row, Typography } from "antd";
+import { Card, Col, Divider, Row, Tag, Typography } from "antd";
+import CardChat from "components/card-chat";
 import { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -16,9 +17,7 @@ const Home: NextPage = () => {
   const router = useRouter();
   const session = useSession();
   const [chats, setChats] = useState<ChatType[]>([]);
-  const [repos, setRepos] = useState<
-    Endpoints["GET /user/repos"]["response"]["data"]
-  >([]);
+  const [repos, setRepos] = useState<Endpoints["GET /user/repos"]["response"]["data"]>([]);
 
   useEffect(() => {
     if (session.data) {
@@ -61,14 +60,23 @@ const Home: NextPage = () => {
                     key="view"
                     onClick={() => {
                       router.push(
-                        `/explorer/${chatId}/${chat.owner}/${chat.repo}`
+                        `/explorer/${chatId}/${chat.owner}/${chat.repo}/${chat.branch}`
                       );
                     }}
                   />
                 ]}
               >
                 <Card.Meta
-                  title={`${chat.owner}/${chat.repo}`}
+                  title={
+                    <div style={{display: "flex", flexDirection: "column"}}>
+                      <Typography.Text>
+                        {`${chat.owner}/${chat.repo}`}
+                      </Typography.Text>
+                      <Typography.Text>
+                        <Tag color="magenta">{chat.branch}</Tag>
+                      </Typography.Text>
+                    </div>
+                  }
                   description={date}
                 />
               </Card>
@@ -85,37 +93,7 @@ const Home: NextPage = () => {
         {repos.map((repo) => {
           return (
             <Col key={repo.id} span={6}>
-              <Card
-                actions={[
-                  <PlusOutlined
-                    key="view"
-                    onClick={() => {
-                      fetch("/api/chat", {
-                        method: "POST",
-                        headers: {
-                          "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                          owner: repo.owner.login,
-                          repo: repo.name
-                        })
-                      })
-                        .then((res) => res.json())
-                        .then((res) => {
-                          router.push(
-                            `/explorer/${res.chat}/${repo.owner.login}/${repo.name}`
-                          );
-                        })
-                        .catch(ErrorManager.log);
-                    }}
-                  />
-                ]}
-              >
-                <Card.Meta
-                  title={repo.name}
-                  description={repo.description ?? "..."}
-                />
-              </Card>
+              <CardChat repo={repo} />
             </Col>
           );
         })}

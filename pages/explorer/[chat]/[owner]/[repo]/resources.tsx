@@ -24,8 +24,8 @@ const Resources: React.FC<Props> = ({ setCode }) => {
     Endpoints["GET /repos/{owner}/{repo}/contents/{path}"]["response"]["data"]
   >([]);
   const router = useRouter();
-  const { chat, owner, path } = router.query;
-  const [repo, ...currentPath] = path as string[];
+  const { chat, owner, repo, path } = router.query;
+  const [branch, ...currentPath] = path as string[];
   const CODE_SYNC_EVENT = `__code_sync__${chat}`;
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const Resources: React.FC<Props> = ({ setCode }) => {
 
   useEffect(() => {
     github
-      .query(`/repos/${owner}/${repo}/contents/${currentPath.join("/")}`)
+      .query(`/repos/${owner}/${repo}/contents/${currentPath.join("/")}?ref=${branch}`)
       .then(({ data }) => {
         const isFile = !Array.isArray(data);
         if (isFile) {

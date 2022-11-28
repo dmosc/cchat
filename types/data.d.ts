@@ -11,6 +11,7 @@ type ChatType = {
   _id: ObjectId;
   owner: string;
   repo: string;
+  branch: string;
 };
 
 type CodeSyncEventType = {
