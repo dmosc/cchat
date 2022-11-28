@@ -106,7 +106,7 @@ const Chat: React.FC = () => {
         <TextEditor
           callback={(content: string) => {
             if (!!content) {
-              const [min, max] =
+              const [min] =
                 (lines as string)?.split("-").map(Number) ?? [];
               const message: MessageType = {
                 content,
