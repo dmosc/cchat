@@ -3,7 +3,8 @@
 
 :root {
   /* Color palette */
-  --primary-color: #ff00bf;
+  --primary-color: #108ee9;
+  --primary-color-rgb: 16, 142, 233;
   --default-background-color: 49, 49, 49;
   --default-border-color: #bfbfbf;
   /* Spacing */

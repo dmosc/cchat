@@ -73,7 +73,9 @@ const Home: NextPage = () => {
                         {`${chat.owner}/${chat.repo}`}
                       </Typography.Text>
                       <Typography.Text>
-                        <Tag color="magenta">{chat.branch}</Tag>
+                        <Tag color={getComputedStyle(document.documentElement).getPropertyValue("--primary-color")}>
+                          {chat.branch}
+                        </Tag>
                       </Typography.Text>
                     </div>
                   }

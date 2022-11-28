@@ -4,7 +4,7 @@ import {
   HomeOutlined
 } from "@ant-design/icons";
 import { Endpoints } from "@octokit/types";
-import { Button, List, Typography } from "antd";
+import { Button, List, Tag, Typography } from "antd";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import github from "services/github";
@@ -59,9 +59,11 @@ const Resources: React.FC<Props> = ({ setCode }) => {
       <List
         header={
           <div className={styles.containerHeader}>
-            <Title level={5} style={{ margin: 0 }}>
-              File explorer
-            </Title>
+            <Typography.Text>
+              <Tag color={getComputedStyle(document.documentElement).getPropertyValue("--primary-color")}>
+                {branch}
+              </Tag>
+            </Typography.Text>
             <div className={styles.containerHeaderActions}>
               <Button
                 icon={<HomeOutlined />}
@@ -72,10 +74,10 @@ const Resources: React.FC<Props> = ({ setCode }) => {
                 icon={<ArrowLeftOutlined />}
                 onClick={() => {
                   /*
-                  `currentPath` contains everything from [...path].tsx query param after
-                  the `repo` definition from index 0. It being empty means that there's
-                  no path component left to pop from the current path.
-                */
+                    `currentPath` contains everything from [...path].tsx query param after
+                    the `repo` definition from index 0. It being empty means that there's
+                    no path component left to pop from the current path.
+                  */
                   const newPath = router.asPath.split("/");
                   newPath.pop();
                   router.push(newPath.join("/"));
