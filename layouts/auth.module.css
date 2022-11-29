@@ -12,3 +12,7 @@
     hsl(294deg 100% 50%) 100%
   );
 }
+
+.cardShadow {
+  box-shadow: var(--shadow-elevation);
+}

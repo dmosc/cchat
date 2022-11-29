@@ -12,6 +12,15 @@
   --default-padding: 5px;
   /* Misc */
   --default-border-radius: 2px;
+  --shadow-color: 0deg 0% 0%;
+  --shadow-elevation:
+    0px 0.5px 0.8px hsl(var(--shadow-color) / 0),
+    0px 3.2px 4.8px hsl(var(--shadow-color) / 0.02),
+    0px 5.5px 8.3px hsl(var(--shadow-color) / 0.03),
+    0.1px 8.2px 12.3px hsl(var(--shadow-color) / 0.05),
+    0.1px 11.9px 17.9px hsl(var(--shadow-color) / 0.06),
+    0.1px 17.3px 26px hsl(var(--shadow-color) / 0.08),
+    0.2px 25px 37.5px hsl(var(--shadow-color) / 0.1);
 }
 
 * {
