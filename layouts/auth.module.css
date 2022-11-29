@@ -4,4 +4,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: linear-gradient(
+    0deg,
+    hsl(0deg 0% 100%) 0%,
+    hsl(215deg 80% 73%) 39%,
+    hsl(222deg 100% 64%) 61%,
+    hsl(294deg 100% 50%) 100%
+  );
 }
